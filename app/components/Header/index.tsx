@@ -10,7 +10,7 @@ import HeaderDropdown from "@/components/Header/Header.Dropdown";
 
 const Header: React.FC = () => {
   return (
-    <header className="py-8 px-6 md:px-4 md:py-2 lg:px-0 max-w-[1140px] h-[64px] mx-auto flex justify-between items-center">
+    <header className="py-8 px-6 md:px-4 md:py-2 max-w-[1140px] h-[64px] mx-auto flex justify-between items-center">
       <Link href="https://pintu.co.id">
         <PintuLogo />
       </Link>
