@@ -1,9 +1,12 @@
-import AboutCryptocurrency from '@/components/AboutCyptoCurrency';
-import CryptoList from '@/components/CryptoCurrency';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
-import PageTitle from '@/components/PageTitle';
-import TopMovers from '@/components/TopMovers';
+import dynamic from "next/dynamic";
+
+import AboutCryptocurrency from "@/components/AboutCyptoCurrency";
+import CryptoList from "@/components/CryptoList";
+import PageTitle from "@/components/PageTitle";
+import TopMovers from "@/components/TopMovers";
+
+const Header = dynamic(() => import("@/components/Header"));
+const Footer = dynamic(() => import("@/components/Footer"));
 
 export default function Home() {
   return (

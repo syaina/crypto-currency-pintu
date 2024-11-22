@@ -1,14 +1,22 @@
-import { CurrenciesAndPrice } from '@/interfaces/SupportedCurrencies';
+import { CryptoCurrenciesType } from "@/interfaces/CryptoCurrencies";
 
-export const fetchCrypto = async (): Promise<CurrenciesAndPrice[]> => {
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/supported-currencies`;
-  const response = await fetch(apiUrl);
+const fetchCrypto = async (): Promise<CryptoCurrenciesType[] | []> => {
+  const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/crypto-currencies`;
 
-  if (!response.ok) {
-    throw new Error('Response is not ok');
+  try {
+    const response = await fetch(apiUrl);
+
+    if (!response.ok) {
+      throw new Error("Response is not ok");
+    }
+
+    const data = await response.json();
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
   }
-
-  const data = await response.json();
-
-  return data;
 };
+
+export default fetchCrypto;

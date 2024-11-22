@@ -1,50 +1,88 @@
-'use client';
+"use client";
 
-import SearchIcon from '@/icons/Search.svg';
-import CrossIcon from '@/icons/Cross.svg';
-// import Image from 'next/image';
+import SearchIcon from "@/icons/Search.svg";
+import CrossIcon from "@/icons/Cross.svg";
+import { useEffect, useMemo, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getQueryOptionCrypto } from "@/hooks/getQueryOptionCrypto";
+import { CryptoCurrenciesType } from "@/interfaces/CryptoCurrencies";
+import SearchResultList from "./SearchResult.List";
 
 interface SearchResultProps {
-  isShow: boolean;
   handleShowSearchResult: () => void;
 }
 
-const SearchResult = (props: SearchResultProps) => {
+const SearchResult: React.FC<SearchResultProps> = (props) => {
+  const [keyword, setKeyword] = useState("");
+  const { data } = useQuery(getQueryOptionCrypto);
+  const [searchResult, setSearchResult] = useState<CryptoCurrenciesType[]>(
+    data ?? []
+  );
+
+  // Shows result based on keyword
+  const result = useMemo(() => {
+    if (keyword.length < 1) {
+      return data;
+    }
+
+    const res = searchResult.filter((crypto) =>
+      crypto.name.toLowerCase().includes(keyword.toLowerCase())
+    );
+
+    return res;
+  }, [keyword, data, searchResult]);
+
+  const handleCrossButton = () => {
+    setKeyword("");
+    props.handleShowSearchResult();
+  };
+
+  useEffect(() => {
+    setSearchResult(data ?? []);
+  }, [data]);
+
   return (
     <div
-      className={`search-container ${
-        props.isShow ? '' : 'hidden'
-      } absolute top-0 left-0 w-full bg-white border rounded-lg`}
+      className={`search-container absolute top-0 left-0 w-full bg-white border rounded-lg z-40`}
     >
-      <div className="flex gap-4 py-3 px-4 m-4 mb-0 bg-[rgb(242,242,242)] rounded-lg">
-        <SearchIcon />
-        <div className="text-sm text-[rgba(146,147,150,1)]">
-          Cari aset di Pintu
-        </div>
-        <CrossIcon
-          className="absolute right-[2rem] cursor-pointer z-10"
-          onClick={props.handleShowSearchResult}
+      <div className="flex gap-4 py-1 px-4 m-4 mb-0 bg-[rgb(242,242,242)] rounded-lg items-center">
+        <SearchIcon className="shrink-0" />
+        <input
+          type="text"
+          className="text-sm w-full mr-4 border-none bg-transparent focus:outline-none py-1"
+          style={{ border: "none! important" }}
+          placeholder="Cari aset di Pintu"
+          value={keyword}
+          onChange={(event) => setKeyword(event.currentTarget.value)}
         />
+
+        <button
+          onClick={handleCrossButton}
+          className="absolute right-[2rem] cursor-pointer z-10"
+        >
+          <CrossIcon />
+        </button>
       </div>
       <div className="search-result-wrapper h-[20rem] overflow-y-scroll px-4 mt-4">
-        {/* {Array.from({ length: 100 }).map(() => (
-          <a
-            href="https://pintu.co.id/market/btc"
-            className="search-card flex justify-between items-center p-2 mb-2 cursor-pointer hover:bg-[rgb(242,242,242)] rounded-lg"
-          >
-            <div className="flex items-center">
-              <Image
-                src="https://s3-ap-southeast-1.amazonaws.com/static.pintu.co.id/assets/images/logo/circle_BTC.svg"
-                alt="Bitcoin"
-                width={16}
-                height={16}
-                className="mr-2"
-              />
-              <p className="font-medium text-base">Bitcoin</p>
-            </div>
-            <p className="font-normal text-base text-[rgb(135,137,140)]">BTC</p>
-          </a>
-        ))} */}
+        {result?.length ? (
+          result?.map((res) => (
+            <SearchResultList
+              key={res.id}
+              logo={res.logo}
+              symbol={res.currencySymbol}
+              name={res.name}
+            />
+          ))
+        ) : (
+          <div className="mt-10 text-center">
+            <p className="text-sm font-semibold">
+              &#34;{keyword}&#34; Tidak Ditemukan
+            </p>
+            <p className="text-sm text-[#87898C] font-normal">
+              Kata kunci tidak sesuai atau aset belum ada di Pintu
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );
