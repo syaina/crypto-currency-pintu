@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 const AboutCryptocurrency: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const AboutCryptocurrency: React.FC = () => {
           blockchain. Terdapat 2 jenis crypto, yaitu coin dan token. Coin adalah
           cryptocurrency yang berdiri diatas blockchain-nya sendiri dengan
           contoh bitcoin dan ethereum, sedangkan token adalah cryptocurrency
-          yang "menumpang" diatas blockchain dari native aset lain.
+          yang &#34;menumpang&#34; diatas blockchain dari native aset lain.
         </p>
         <a
           href="https://pintu.co.id/academy/post/apa-itu-cryptocurrency"

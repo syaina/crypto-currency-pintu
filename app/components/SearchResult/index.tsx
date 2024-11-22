@@ -30,7 +30,7 @@ const SearchResult: React.FC<SearchResultProps> = (props) => {
     );
 
     return res;
-  }, [keyword]);
+  }, [keyword, data, searchResult]);
 
   const handleCrossButton = () => {
     setKeyword("");
@@ -75,7 +75,9 @@ const SearchResult: React.FC<SearchResultProps> = (props) => {
           ))
         ) : (
           <div className="mt-10 text-center">
-            <p className="text-sm font-semibold">"{keyword}" Tidak Ditemukan</p>
+            <p className="text-sm font-semibold">
+              &#34;{keyword}&#34; Tidak Ditemukan
+            </p>
             <p className="text-sm text-[#87898C] font-normal">
               Kata kunci tidak sesuai atau aset belum ada di Pintu
             </p>
