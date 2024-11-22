@@ -1,0 +1,27 @@
+.up {
+  border-color: transparent transparent rgb(37, 167, 100);
+  border-style: solid;
+  border-width: 0px 6px 8px;
+  height: 0px;
+  margin-right: 5px;
+  width: 0px;
+  align-self: center;
+}
+
+.down {
+  border-color: rgb(229, 64, 64) transparent transparent;
+  border-style: solid;
+  border-width: 8px 6px 0px;
+  height: 0px;
+  margin-right: 5px;
+  width: 0px;
+  align-self: center;
+}
+
+.up + p {
+  color: rgb(37, 167, 100);
+}
+
+.down + p {
+  color: rgb(229, 64, 64);
+}
