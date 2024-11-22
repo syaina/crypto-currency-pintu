@@ -1,7 +1,8 @@
 import { CurrenciesAndPrice } from '@/interfaces/SupportedCurrencies';
 
 export const fetchCrypto = async (): Promise<CurrenciesAndPrice[]> => {
-  const response = await fetch('/api/supported-currencies');
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/supported-currencies`;
+  const response = await fetch(apiUrl);
 
   if (!response.ok) {
     throw new Error('Response is not ok');

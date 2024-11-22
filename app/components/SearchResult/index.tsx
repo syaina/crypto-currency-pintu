@@ -2,7 +2,7 @@
 
 import SearchIcon from '@/icons/Search.svg';
 import CrossIcon from '@/icons/Cross.svg';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 interface SearchResultProps {
   isShow: boolean;
