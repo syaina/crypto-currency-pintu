@@ -23,6 +23,7 @@ The **Cryptocurrency Market List Page** serves as a hub for users to explore var
 This page is part of the **Pintu** application, which aims to simplify cryptocurrency market tracking and trading for users of all experience levels.
 
 ---
+
 ## Technical Details
 
 ### TechStacks
@@ -79,7 +80,6 @@ BASE_URL=http://localhost:3000
 ### 2. **Top Mover**
 
 - Displays the top-moving cryptocurrencies with the biggest drops or growth
-  
 
 ### 3. **Cryptocurrency Table List**
 
@@ -137,8 +137,9 @@ Here are some features planned for future updates:
 
 - Allow users to sort and filter the list by price, growth, or other metrics.
 - Ensure responsive design across various screen sizes.
-Implement unit testing.
+  Implement unit testing.
 - Colorize svg for Crypto icon.
+- Language switcher.
 - Provide a design component system and set up a playground on Storybook.
 
 ---
