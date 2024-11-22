@@ -1,7 +1,7 @@
-import { CurrenciesAndPrice } from "@/interfaces/SupportedCurrencies";
+import { CryptoCurrenciesType } from "@/interfaces/CryptoCurrencies";
 
-const fetchCrypto = async (): Promise<CurrenciesAndPrice[] | []> => {
-  const apiUrl = `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/supported-currencies`;
+const fetchCrypto = async (): Promise<CryptoCurrenciesType[] | []> => {
+  const apiUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/crypto-currencies`;
 
   try {
     const response = await fetch(apiUrl);
@@ -11,11 +11,11 @@ const fetchCrypto = async (): Promise<CurrenciesAndPrice[] | []> => {
     }
 
     const data = await response.json();
-    
+
     return data;
   } catch (error) {
     console.error("Error fetching data:", error);
-    return []; 
+    return [];
   }
 };
 
