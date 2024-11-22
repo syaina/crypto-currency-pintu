@@ -5,6 +5,7 @@ import dynamic from "next/dynamic";
 
 import CurrencyGrowth from "../CurrencyGrowth";
 import { thousandSeparator } from "@/utils/thousandSeparator";
+import Link from "next/link";
 
 interface CryptoListProps {
   name: string;
@@ -32,23 +33,28 @@ const CryptoList: React.FC<CryptoListProps> = (props) => {
 
   return (
     <div className="crypto-list-body grid grid-cols-[26%_14%_1fr_1fr_1fr_1fr_9%] items-center font-semibold border border-[rgb(229,231,235)] border-t-0">
-      <div className="text-base flex gap-6 p-5">
-        <Image
-          className="crypto-logo"
-          src={logo}
-          width={32}
-          height={32}
-          alt={name}
-          style={{ width: "32px", height: "32px", color: color }}
-        />
-        {/* <div dangerouslySetInnerHTML={{ __html: logo }} /> */}
+      <div className="text-base flex gap-6 p-5 items-center">
+        <Link
+          href={`https://pintu.co.id/market/${currencySymbol.toLowerCase()}`}
+        >
+          <Image
+            className="crypto-logo"
+            src={logo}
+            width={32}
+            height={32}
+            alt={name}
+            style={{ width: "32px", height: "32px", color: color }}
+          />
+        </Link>
 
-        <div>
+        <Link
+          href={`https://pintu.co.id/market/${currencySymbol.toLowerCase()}`}
+        >
           <p className="">{name}</p>
           <p className="text-[rgba(146,147,150,1)] font-normal">
             {currencySymbol}
           </p>
-        </div>
+        </Link>
       </div>
       <div className="p-5">
         <p>Rp {thousandSeparator(latestPrice)}</p>
